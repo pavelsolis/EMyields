@@ -1,3 +1,37 @@
+## Project-specific (e.g. large files)
+
+## Excel files (data files can be large)
+*.xls*
+
+## Word default autosave extension
+~$*.docx
+
+## Matlab autosaves
+# Windows default autosave extension
+*.asv
+
+# OSX / *nix default autosave extension
+*.m~
+.DS_Store
+
+## Stata files
+*.smcl
+*.stpr
+*.stsem
+
+## R
+.RData
+
+## Python
+*.pyc
+
+## Shell scripting
+*.sh~
+
+## Lyx
+*.lyx~
+*lyxformat-413.lyx
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
