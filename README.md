@@ -9,9 +9,9 @@ The results in the paper were generated using the following:
 - Software: Matlab R2019a, Stata 17.
 - Add-ons. Matlab: financial toolboxes. Stata: scheme-modern, xtcsd, xtscc.ado*.
 - Restricted data sources: Bloomberg, Datastream.
-- Expected running time: Pre-Analysis ~ 30 min, Analysis ~ 2 hrs.
+- Expected running time: 2 hrs.
 
-* In the file xtscc.ado, comment out section `Check if dataset's timevar is regularly spaced` (lines 74-83) because `tab timevar` gives the error `too many variables`. Type `which xtscc` in Stata to find the location of the xtscc.ado file.
+\* In the file xtscc.ado, comment out section `Check if dataset's timevar is regularly spaced` (lines 74-83) because `tab timevar` gives the error `too many variables`. Type `which xtscc` in Stata to find the location of the xtscc.ado file.
 
 
 ## Contents of Folder
@@ -24,7 +24,7 @@ The results in the paper were generated using the following:
 	- Raw. Original data files.
 	- Analytic. Analysis data files.*
 - Docs folder with the following subfolders: 
-	- Paper. Files that make up the manuscript and the online appendix.
+	- Paper. Source files for the manuscript and the online appendix.
 	- Figures. Files for the figures used in the paper.
 	- References. File listing the cited references.
 
