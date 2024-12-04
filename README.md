@@ -30,9 +30,9 @@ The results in the paper were generated using the following:
 
 
 ### Data Files
-The repository does not support .xls nor .xlsx files.
+The repository ignores .xls and .xlsx files for version control.
 
-Some variables and datasets (e.g., from Bloomberg and Datastream) cannot be shared due to licensing rights.
+Several original data files cannot be shared due to licensing rights, yet the codes used to generate the analysis data files are provided in case the user has access to the original sources. The MetadataGuide.docx file documents the data sources used in the study. 
 
 Some data files are stored outside the main folder due to their large sizes. Before running the codes, define where those large datasets will be stored in your computer by updating the paths in the respective codes (read_data.m, ts_analysis.m, spillovers.do).
 - The large data files are: struct_datady_cells.mat, struct_datady_S.mat, struct_datamy_S.mat, dataspillovers1.dta, dataspillovers2.dta.
@@ -40,13 +40,11 @@ Some data files are stored outside the main folder due to their large sizes. Bef
 
 
 ## Instructions for Replication
-Execute the ts_analysis.m and spillovers.do files to replicate the results in the paper.
-
 Execute the paper.tex and online.tex files to generate the PDF version of the manuscript and the online appendix.
 
+Execute the ts_analysis.m and spillovers.do files to replicate the figures and tables in the paper and the online appendix. Below are details to facilitate following the workflow of the codes.
 
-## Code Workflow (Optional)
-Below are details to facilitate following the workflow of the codes.
+Comments in those codes indicate which lines generate what.
 
 In the Pre-Analysis folder, read_data.m -> generates dataset_daily (approx. runtime: 30 min)
 - read_platforms	-> tickers from Bloomberg and Datastream
