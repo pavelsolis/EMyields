@@ -34,7 +34,7 @@ The results in the paper were generated using the following:
 ## Instructions for Replication
 Execute the Docs/Paper/paper.tex and Docs/Paper/online.tex files to generate the PDF version of the manuscript and the online appendix.
 
-The contents of several original data files in the Data/Raw folder cannot be shared due to licensing rights but the Data/MetadataGuide.docx file documents the steps to access the data sources. In case the user has access to the data sources, execute the Codes/Pre-Analysis/read_data.m file to read the original data files and generate the analysis data files.
+The contents of several original data files in the Data/Raw folder cannot be shared due to licensing rights but the Data/MetadataGuide.docx file documents the steps to access the data sources. In case the user has access to the data sources, simply execute the Codes/Pre-Analysis/read_data.m file to read the original data files and generate the analysis data files.
 
 The Codes/Analysis/ts_analysis.m and Codes/Analysis/spillovers.do files replicate the figures and tables in the paper and the online appendix. Comments in those codes indicate the lines that generate each figure and table.
 
