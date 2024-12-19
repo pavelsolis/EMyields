@@ -2,7 +2,7 @@
 * Local projections: EM regions
 * ==============================================================================
 use $file_dta2, clear
-// global horizon = 45		// in days
+// global horizon = 45			// in days
 
 * Define local variables
 local xtcmd xtscc			// xtreg

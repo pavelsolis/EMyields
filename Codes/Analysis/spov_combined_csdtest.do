@@ -9,7 +9,7 @@ foreach group in 0 1 {
 	if `group' == 0 local grp "AE"
 	else local grp "EM"
 	
-	foreach t in 24 120 {
+	foreach t in 24 120 { 
 		// regressions
 		foreach v in `vars' {
 			
