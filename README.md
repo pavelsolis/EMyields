@@ -31,8 +31,8 @@ The results in the paper were generated using the following:
 ## Instructions for Replication
 Execute the files Docs/Paper/paper.tex and Docs/Paper/online.tex to generate the PDF version of the manuscript and the online appendix.
 
-The contents of several original data files in the Data/Raw folder cannot be shared due to licensing rights or due to size limits but the file Data/MetadataGuide.docx documents the steps to access the data sources. In case the user has access to the data sources, simply execute the Codes/Pre-Analysis/read_data.m file to read the original data files and generate the analysis data file Data/Analytic/yc_data.mat; beware that it creates dta files that might be too large for version control.
+The contents of several original data files in the Data/Raw folder cannot be shared due to licensing rights or due to size limits but the file Data/MetadataGuide.docx documents the steps to access the data sources. In case the user has access to the data sources, simply execute the Codes/Pre-Analysis/read_data.m file to read the original data files and generate the analysis data file Data/Analytic/yc_data.mat.
 
 Execute the files Codes/Analysis/ts_analysis.m and Codes/Analysis/spillovers.do to replicate the figures and tables in the paper and the online appendix; comments in those codes indicate the lines that generate each figure and table.
 - Codes/Analysis/ts_analysis.m loads the data file Data/Analytic/yc_data.mat, computes the decompositions of the yield curves of the countries in the sample at the monthly and daily frequency, and generates the data files Data/Analytic/yc_decompositions.mat and Data/Analytic/dataspillovers.xlsx.
-- Codes/Analysis/spillovers.do loads the data file Data/Analytic/dataspillovers.xlsx and performs the spillover analysis.
+- Codes/Analysis/spillovers.do loads the data file Data/Analytic/dataspillovers.xlsx and performs the spillover analysis; beware that it creates dta files that might be too large for version control.
