@@ -103,7 +103,7 @@
 % Customize Thanks Symbol
 %---------------------------------------------------------------
 \makeatletter
-\def\@fnsymbol#1{\ensuremath{\ifcase#1\or a\or 1\or \dagger\or *\or
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or *\or 1\or \dagger\or 
 		\mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger
 		\or \ddagger\ddagger \else\@ctrerr\fi}}
 \makeatother
@@ -340,7 +340,7 @@
 \date{}
 \maketitle	\vspace{-4ex}
 \begin{center}
-	November 2024
+	December 2024
 \end{center}
 
 %---------------------------------------------------------------
@@ -430,9 +430,9 @@ A synthetic yield in emerging markets can be seen as the borrowing rate paid by 
 
 The zero-coupon synthetic LC yield for an \(\tnr\)-period bond at time \(\idxt\), \(\yLCsynt\), is defined as
 \begin{equation} \label{eq:nLCsynt}
-\eqyLCsynt .
+\eqyLCsynt ,
 \end{equation}
-\noindent in which \(\yUS\) denotes the zero-coupon yield for an \(\tnr\)-period U.S. Treasury security at time \(\idxt\), and \(\fwdprm\) is the \(\tnr\)-period forward premium from USD to LC at time \(\idxt\). Notice that synthetic yields require no information from the nominal yields, \(\yLCnom\). 
+in which \(\yUS\) denotes the zero-coupon yield for an \(\tnr\)-period U.S. Treasury security at time \(\idxt\), and \(\fwdprm\) is the \(\tnr\)-period forward premium from USD to LC at time \(\idxt\). Notice that synthetic yields require no information from the nominal yields, \(\yLCnom\). 
 
 The calculation of the forward premium depends on the maturity. For maturities less than one year, the forward premium equals the annualized difference between the forward and the spot exchange rates. For maturities equal to or greater than one year, the calculation of the forward premium uses cross-currency swaps because outright forwards are less liquid. Yet fixed-for-fixed cross-currency swaps are rarely observed in the market, so their construction uses cross-currency basis swaps and interest rate swaps. Start by swapping fixed payments in LC into floating-rate cash flows in USD using cross-currency basis swaps (referenced to the USD Libor---London interbank offered rate---), which are then swapped into fixed-rate cash flows in USD using interest rate swaps. These swaps are liquid, marked to market and collateralized, so the counterparty risk is negligible. 
 
@@ -507,33 +507,33 @@ Under no arbitrage, a strictly positive stochastic discount factor \(\SDF\) pric
 \begin{equation} \label{eq:nPzeroP}
 \PzeroP ,
 \end{equation}
-\noindent in which \(\ExpP [\cdot]\) denotes the conditional expectation at time \(\idxt\) taken using the actual or physical probability measure, \(\Pmeasure\), that generates the data. Given \(\SDF\), there exists a theoretical risk-neutral or risk-adjusted pricing measure \(\Qmeasure\) defined as follows 
+in which \(\ExpP [\cdot]\) denotes the conditional expectation at time \(\idxt\) taken using the actual or physical probability measure, \(\Pmeasure\), that generates the data. Given \(\SDF\), there exists a theoretical risk-neutral or risk-adjusted pricing measure \(\Qmeasure\) defined as follows 
 \begin{equation} \label{eq:nPzeroQ}
 \PzeroQ ,
 \end{equation}
-\noindent in which \(\ExpQ [\cdot]\) also denotes conditional expectation but taken under the \(\Qmeasure\)  measure. 
+in which \(\ExpQ [\cdot]\) also denotes conditional expectation but taken under the \(\Qmeasure\)  measure. 
 
 A discrete-time affine term structure model assumes that the dynamics of a \(\Xdim \times 1\) vector of unobserved pricing factors or state variables, \(\Xvars\), follow a first-order vector autoregression, VAR(1), under the risk-neutral measure \(\Qmeasure\)
 \begin{equation} \label{eq:nXvarsQ}
 \eqXvarsFwdQ ,
 \end{equation}
-\noindent in which \(\XmuQ\) is a \(\Xdim \times 1\) vector, \(\XPhiQ\) is a \(\Xdim \times \Xdim\) transition matrix, \(\XSigma\) is a \(\Xdim \times \Xdim\) lower triangular matrix with positive diagonal elements, and \(\errorQ\) is a \(\Xdim \times 1\) independent and identically distributed, normal vector with zero mean and covariance equal to the identity matrix conditional on the pricing factors, that is \(\error^{\Qmeasure} | \Xvars \sim \Normal_{\Xdim} \left(0,I\right)\). 
+in which \(\XmuQ\) is a \(\Xdim \times 1\) vector, \(\XPhiQ\) is a \(\Xdim \times \Xdim\) transition matrix, \(\XSigma\) is a \(\Xdim \times \Xdim\) lower triangular matrix with positive diagonal elements, and \(\errorQ\) is a \(\Xdim \times 1\) independent and identically distributed, normal vector with zero mean and covariance equal to the identity matrix conditional on the pricing factors, that is \(\error^{\Qmeasure} | \Xvars \sim \Normal_{\Xdim} \left(0,I\right)\). 
 
 The pricing factors drive the dynamics of the one-period interest rate as follows 
 \begin{equation} \label{eq:nShortRate}
 \eqshortrate ,
 \end{equation}
-\noindent in which \(\deltazero\) is a scalar and \(\deltaone\) is a \(\Xdim \times 1\) vector of parameters.
+in which \(\deltazero\) is a scalar and \(\deltaone\) is a \(\Xdim \times 1\) vector of parameters.
 
 Under these assumptions, the price is an exponentially affine function of the factors
 \begin{equation*}
 \Pzero = \exp\left( \affineA + \affineB \Xvars \right) ,
 \end{equation*}
-\noindent while the continuously compounded yield is an affine function of the factors
+while the continuously compounded yield is an affine function of the factors
 \begin{equation} \label{eq:nYaffineQ}
 \eqyZeroQ ,
 \end{equation}
-\noindent in which \(\affineAQ = - \frac{1}{\tnr} \affineA\), \(\affineBQ = - \frac{1}{\tnr} \affineB\), where in turn the scalar \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuQ, \XPhiQ, \XSigma, \tnr)\) and the \(1 \times \Xdim\) vector \(\affineB = \mathcal{B}(\deltaone, \XPhiQ, \tnr)\) are loadings that satisfy the recursive equations
+in which \(\affineAQ = - \frac{1}{\tnr} \affineA\), \(\affineBQ = - \frac{1}{\tnr} \affineB\), where in turn the scalar \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuQ, \XPhiQ, \XSigma, \tnr)\) and the \(1 \times \Xdim\) vector \(\affineB = \mathcal{B}(\deltaone, \XPhiQ, \tnr)\) are loadings that satisfy the recursive equations
 \begin{equation} \label{eq:nAffineA}
 \affineAfwd = - \deltazero + \affineA + \affineB' \XmuQ + \frac{1}{2} \affineB' \XSigma \XSigma' \affineB , \quad A_{0} = 0 ,
 \end{equation}
@@ -545,23 +545,23 @@ The yields \(\yZeroQ\) are the model's fitted yields, which means that the risk-
 \begin{equation} \label{eq:nSDF}
 \eqSDF ,
 \end{equation}
-\noindent in which \(\riskprice\) is a \(\Xdim \times 1\) vector of market prices of risk. Following \cite{Duffee:2002}, \(\riskprice\) is assumed to be an affine function of the pricing factors
+in which \(\riskprice\) is a \(\Xdim \times 1\) vector of market prices of risk. Following \cite{Duffee:2002}, \(\riskprice\) is assumed to be an affine function of the pricing factors
 \begin{equation} \label{eq:nRiskprice}
 \eqriskprice ,
 \end{equation}
-\noindent in which \(\lambdazero\) is a \(\Xdim \times 1\) vector and \(\lambdaone\) is a \(\Xdim \times \Xdim\) matrix of parameters.
+in which \(\lambdazero\) is a \(\Xdim \times 1\) vector and \(\lambdaone\) is a \(\Xdim \times \Xdim\) matrix of parameters.
 
 This structure for the market prices of risk implies that the dynamics of the pricing factors under the physical measure \(\Pmeasure\) can be described by a VAR(1) as follows
 \begin{equation} \label{eq:nXvarsP}
 \eqXvarsFwdP ,
 \end{equation}
-\noindent in which \(\XmuQ = \XmuP - \XSigma \lambdazero\), \(\XPhiQ = \XPhiP - \XSigma \lambdaone\),  \(\errorP | \Xvars \sim \Normal_{\Xdim} \left(0,I\right)\). Notice that the covariance matrix of the shocks is measure independent as it is the same in both cases. 
+in which \(\XmuQ = \XmuP - \XSigma \lambdazero\), \(\XPhiQ = \XPhiP - \XSigma \lambdaone\),  \(\errorP | \Xvars \sim \Normal_{\Xdim} \left(0,I\right)\). Notice that the covariance matrix of the shocks is measure independent as it is the same in both cases. 
 
 The yields consistent with the expectations hypothesis of the yield curve---as if investors were actually risk-neutral (\(\lambdazero = 0\), \(\lambdaone = 0 \))---are obtained as
 \begin{equation*}
 \eqyZeroP ,
 \end{equation*}
-\noindent in which \(\affineAP = - \frac{1}{\tnr} \affineA\), \(\affineBP = - \frac{1}{\tnr} \affineB\), and the loadings \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuP, \XPhiP, \XSigma, \tnr)\) and \(\affineB = \mathcal{B}(\deltaone, \XPhiP, \tnr)\) satisfy the same recursions as those above, but using the parameters of the law of motion of the pricing factors under the \(\Pmeasure\) rather than the \(\Qmeasure\) measure. See the appendices in \cite{Lloyd:2020} for the derivations under both measures. 
+in which \(\affineAP = - \frac{1}{\tnr} \affineA\), \(\affineBP = - \frac{1}{\tnr} \affineB\), and the loadings \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuP, \XPhiP, \XSigma, \tnr)\) and \(\affineB = \mathcal{B}(\deltaone, \XPhiP, \tnr)\) satisfy the same recursions as those above, but using the parameters of the law of motion of the pricing factors under the \(\Pmeasure\) rather than the \(\Qmeasure\) measure. See the appendices in \cite{Lloyd:2020} for the derivations under both measures. 
 
 The term premium for maturity \(\tnr\) at time \(\idxt\), \(\termprm\), is then estimated as 
 \begin{equation} \label{eq:nTPatsm}
@@ -574,7 +574,7 @@ Finally, the credit risk compensation is the nominal-synthetic spread computed a
 \begin{equation} \label{eq:nCIPdevQ}
 \eqCIPdevQ.
 \end{equation}
-\noindent Although the spread uses the fitted (\(\yZeroQ\)) rather than the synthetic (\(\yLCsynt\)) yields, it is similar to the LC credit spread of \cite{DuSchreger:2016JoF} (the correlation is 0.971 for the 10-year maturity) because the model fits the yields reasonably well (see section \ref{sec:modelfit}). 
+Although the spread uses the fitted (\(\yZeroQ\)) rather than the synthetic (\(\yLCsynt\)) yields, it is similar to the LC credit spread of \cite{DuSchreger:2016JoF} (the correlation is 0.971 for the 10-year maturity) because the model fits the yields reasonably well (see section \ref{sec:modelfit}). 
 
 To summarize, the nominal yields of emerging markets can be decomposed as follows 
 \begin{equation*}
@@ -603,11 +603,11 @@ Incorporating this information in the affine model requires two assumptions (see
 \begin{equation*}
 \yZeroE = \frac{1}{\tnr} \ExpP \left[ \sum_{j=0} ^{\tnr-1} \srate_{\idxt+j} \right] = \affineAe + \affineBe \Xvars,
 \end{equation*}
-\noindent in which \(\affineAe = - \frac{1}{\tnr} \affineA\), \(\affineBe = - \frac{1}{\tnr} \affineB\), where in turn \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuP, \XPhiP, 0, \tnr)\) and \(\affineB = \mathcal{B}(\deltaone, \XPhiP, \tnr)\); that is, \(\affineAe\) and \(\affineBe\) also satisfy the recursions under the \(\Pmeasure\) measure but with \(\XSigma = 0\). Second, the (inferred) long-term forecast is assumed to be aligned with the 5-year forward rate starting 5 years hence. In the model, the forward rate from \(\tnr\) to \(\tnrfwd\) periods hence given by \(\eqyFwd\) becomes 
+in which \(\affineAe = - \frac{1}{\tnr} \affineA\), \(\affineBe = - \frac{1}{\tnr} \affineB\), where in turn \(\affineA = \mathcal{A}(\deltazero, \deltaone, \XmuP, \XPhiP, 0, \tnr)\) and \(\affineB = \mathcal{B}(\deltaone, \XPhiP, \tnr)\); that is, \(\affineAe\) and \(\affineBe\) also satisfy the recursions under the \(\Pmeasure\) measure but with \(\XSigma = 0\). Second, the (inferred) long-term forecast is assumed to be aligned with the 5-year forward rate starting 5 years hence. In the model, the forward rate from \(\tnr\) to \(\tnrfwd\) periods hence given by \(\eqyFwd\) becomes 
 \begin{equation*}
 \yZeroEfwd = \frac{1}{\tnrfwd - \tnr} \ExpP \left[ \sum_{j = \tnr} ^{\tnrfwd-1} \srate_{\idxt+j} \right] = \affineAeFwd + \affineBeFwd \Xvars ,
 \end{equation*}
-\noindent in which \(\eqAeFwd\)  and \(\eqBeFwd\). 
+in which \(\eqAeFwd\)  and \(\eqBeFwd\). 
 
 \subsection{Estimation} \label{sec:Estimation}
 The estimation of the affine model uses end-of-month data on \textit{risk-free} yield curves; that is, synthetic yields (\(\yLCsynt\)) for emerging markets and nominal yields (\(\yLCnom\)) for advanced economies. The estimation for advanced economies is done just for comparison purposes. 
@@ -624,7 +624,7 @@ The dimension of the observation equation varies depending on the availability o
 \begin{equation} \label{eq:nYaffineY}
 \eqyVecY,
 \end{equation}
-\noindent in which \(\yVec\) is an \(\Ydim \times 1\) vector of observed yields, \(\Avec\) is an \(\Ydim \times 1\) vector with elements \(\affineAQ\), \(\Bvec\) is an \(\Ydim \times \Xdim\) matrix with rows equal to \(\affineBQ\) for \(n = 1, \ldots, \Ydim\), \(\uVec \sim \Normal_\Ydim (0,I) \) and \(\SyVec\) is a lower triangular \(\Ydim \times \Ydim\) matrix with positive diagonal elements. On months with survey data, the observation equation increases by the number of survey forecasts \(\Sdim\) as follows 
+in which \(\yVec\) is an \(\Ydim \times 1\) vector of observed yields, \(\Avec\) is an \(\Ydim \times 1\) vector with elements \(\affineAQ\), \(\Bvec\) is an \(\Ydim \times \Xdim\) matrix with rows equal to \(\affineBQ\) for \(n = 1, \ldots, \Ydim\), \(\uVec \sim \Normal_\Ydim (0,I) \) and \(\SyVec\) is a lower triangular \(\Ydim \times \Ydim\) matrix with positive diagonal elements. On months with survey data, the observation equation increases by the number of survey forecasts \(\Sdim\) as follows 
 \begin{equation} \label{eq:nYaffineYS}
 \begin{bmatrix}
 \yVec \\ 
@@ -647,7 +647,7 @@ The dimension of the observation equation varies depending on the availability o
 \mathbf{0}     & \SsVec \uSVec
 \end{bmatrix} ,
 \end{equation}
-\noindent in which \(\ySVec\) is an \(\Sdim \times 1\) vector of survey forecasts, \(\ASvec\) is an \(\Sdim \times 1\) vector with elements \(\affineAe\) or \(\affineAeFwd\), \(\BSvec\) is an \(\Sdim \times \Xdim\) matrix with rows equal to \(\affineBe\) or \(\affineBeFwd\) for \(n = 1, \ldots, \Sdim\), \(\uSVec \sim \Normal_\Sdim (0,I) \) and \(\SsVec\) is a lower triangular \(\Sdim \times \Sdim\) matrix with positive diagonal elements. 
+in which \(\ySVec\) is an \(\Sdim \times 1\) vector of survey forecasts, \(\ASvec\) is an \(\Sdim \times 1\) vector with elements \(\affineAe\) or \(\affineAeFwd\), \(\BSvec\) is an \(\Sdim \times \Xdim\) matrix with rows equal to \(\affineBe\) or \(\affineBeFwd\) for \(n = 1, \ldots, \Sdim\), \(\uSVec \sim \Normal_\Sdim (0,I) \) and \(\SsVec\) is a lower triangular \(\Sdim \times \Sdim\) matrix with positive diagonal elements. 
 
 To estimate the survey-augmented model, I follow \cite{Guimaraes:2014} and \cite{Lloyd:2020} in two respects. First, the estimated parameters from the \cite{JSZ:2011} normalization are the initial values for the Kalman filter. Second, the errors of yields and surveys are assumed to be homoskedastic to reduce the number of parameters to be estimated, so \(\SyVec = \sigma_y I_{\Ydim}\) and \(\SsVec = \sigma_s I_{\Sdim}\), in which \(I_{\Ydim}\) and \(I_{\Sdim}\) are \(\Ydim \times \Ydim\) and \(\Sdim \times \Sdim\) identity matrices. In addition, I consider surveys as imperfect or `noisy' measures of expectations, so I follow \cite{KimOrphanides:2012} by fixing \(\sigma_s\) at a conservative level of 75 basis points. 
 
@@ -719,7 +719,7 @@ The following panel local projections assess the transmission of U.S. monetary p
 \begin{equation} \label{eq:nPanelLP}
 \eqpanelLP,
 \end{equation}
-\noindent in which \(\idxh\) indicates the horizon (in days) with \(\idxh = 0, 1, \ldots, 45\) and each \(\epsilon^{j}_{\idxt}\) represents one of the three types of monetary policy surprises described in section \ref{sec:USMPS}; even though the surprises are uncorrelated by construction, the estimation is more efficient when the three types of surprises are included simultaneously. The regressions include country fixed effects \(\alpha_{\idxh,\idxi}\), a lag of the exchange rate \(\fx_{\idxspnllag}\) to rule out explanations due to currency movements, and a lag of the dependent variable. As argued by \cite{HofmannShimShin:2020}, the large number of daily observations reduces the potential for Nickell bias that arises by including a lagged dependent variable in panel regressions with fixed effects and small time dimensions; indeed, the impulse responses are essentially the same when the lag of the dependent variable is excluded. The dependent variables are the 10- and 2-year nominal yields and each of their components. The confidence bands are constructed using Driscoll--Kraay standard errors, which allow for time and cross-sectional dependence. % Lags for DK in LPs: 9
+in which \(\idxh\) indicates the horizon (in days) with \(\idxh = 0, 1, \ldots, 45\) and each \(\epsilon^{j}_{\idxt}\) represents one of the three types of monetary policy surprises described in section \ref{sec:USMPS}; even though the surprises are uncorrelated by construction, the estimation is more efficient when the three types of surprises are included simultaneously. The regressions include country fixed effects \(\alpha_{\idxh,\idxi}\), a lag of the exchange rate \(\fx_{\idxspnllag}\) to rule out explanations due to currency movements, and a lag of the dependent variable. As argued by \cite{HofmannShimShin:2020}, the large number of daily observations reduces the potential for Nickell bias that arises by including a lagged dependent variable in panel regressions with fixed effects and small time dimensions; indeed, the impulse responses are essentially the same when the lag of the dependent variable is excluded. The dependent variables are the 10- and 2-year nominal yields and each of their components. The confidence bands are constructed using Driscoll--Kraay standard errors, which allow for time and cross-sectional dependence. % Lags for DK in LPs: 9
 
 The parameters of interest, \(\beta^{j}_{\idxh}\), measure the average response of the nominal yield and each of its components to monetary policy surprise \(j\) at horizon \(\idxh\). All responses are assessed relative to a one basis point reduction (an easing) in any of the surprises, since the Fed has been more aggressive in that direction over the sample period (see table \ref{tab:mpsstats}). 
 
@@ -869,7 +869,7 @@ To assess the role of the components of U.S. yields (the average expected future
 \begin{equation} \label{eq:nPanelDCMP}
 \eqpanelTPreg ,
 \end{equation}
-\noindent in which \(\alpha_{\idxi}\) are country fixed effects, \(z^{1}_{\idxspnl}\) is a vector containing the components of the U.S. yield curve, \(z^{2}_{\idxspnl}\) is a vector of global and domestic variables as potential drivers of emerging market yields, and \(u_{\idxspnl}\) is the error term. The dependent variable \(\yld_{\idxspnl}\) is either the nominal yield or any of its three components for the 10- and 2-year maturities. As before, I use Driscoll--Kraay standard errors to test for significance. 
+in which \(\alpha_{\idxi}\) are country fixed effects, \(z^{1}_{\idxspnl}\) is a vector containing the components of the U.S. yield curve, \(z^{2}_{\idxspnl}\) is a vector of global and domestic variables as potential drivers of emerging market yields, and \(u_{\idxspnl}\) is the error term. The dependent variable \(\yld_{\idxspnl}\) is either the nominal yield or any of its three components for the 10- and 2-year maturities. As before, I use Driscoll--Kraay standard errors to test for significance. 
 
 The main explanatory variables are the components of U.S. yields (at corresponding maturities) form the decomposition of \cite{KimWright:2005}. The controls for the local macroeconomic conditions are the policy rate reported by the Bank for International Settlements, as well as the domestic inflation and unemployment rates. The (standardized) exchange rate in each country rules out explanations of changes in yields due to currency movements. The Cboe Volatility Index (VIX) is included as an important driver of the global financial cycle \citep{Rey:2013}. Alternative, and arguably exogenous, measures of global uncertainty are the global and U.S. versions of the news-based economic policy uncertainty (EPU) index of \cite{BakerBloomDavis:2016}. The VIX and EPU indices are used in logs. Finally, the global economic activity index of \cite{Hamilton:2021} captures real variables. 
 
@@ -974,7 +974,7 @@ The analysis in this paper can be extended in several directions. The proposed t
 
 \section*{Acknowledgments}
 \begin{spacing}{1.25} 
-I thank Jonathan Wright for his invaluable advice, to Greg Duffee and Olivier Jeanne for insightful suggestions, to the editors and two anonymous referees for their valuable feedback. I also thank Tobias Adrian, Derin Aksit, Laurence Ball, Bob Barbera, Christopher Carroll, Lalit Contractor, Alejandro Díaz de León, Jon Faust, Jorge Luis García Ramírez, Fabrizio López Gallo Dey, Daniel Millimet, Alessandro Rebucci, Tatjana Schulze, and seminar participants at Johns Hopkins University, Loyola University, Carey Business School, the Bank of Spain, the Bank of Mexico, the CNBV, the 2021 Finance Research Letters Virtual Conference and the 2021 EEA-ESEM Virtual Congress for their helpful comments and suggestions. All remaining errors are mine. 
+I thank Jonathan Wright for his invaluable advice, Greg Duffee and Olivier Jeanne for their insightful suggestions, the editors and two anonymous referees for their valuable feedback. I also thank Tobias Adrian, Derin Aksit, Laurence Ball, Bob Barbera, Christopher Carroll, Lalit Contractor, Alejandro Díaz de León, Jon Faust, Jorge Luis García Ramírez, Fabrizio López Gallo Dey, Daniel Millimet, Alessandro Rebucci, Tatjana Schulze, and seminar participants at Johns Hopkins University, Loyola University, Carey Business School, the Bank of Spain, the Bank of Mexico, the CNBV, the 2021 Finance Research Letters Virtual Conference and the 2021 EEA-ESEM Virtual Congress for their helpful comments and suggestions. All remaining errors are mine. %The online appendix and replication codes for this paper can be found at \url{https://github.com/pavelsolis/EMyields/}.
 \end{spacing}
 
 %---------------------------------------------------------------
@@ -982,6 +982,6 @@ I thank Jonathan Wright for his invaluable advice, to Greg Duffee and Olivier Je
 %---------------------------------------------------------------
 \newpage
 \bibliographystyle{abbrvnat}
-	\bibliography{../References/library}
+	\bibliography{library}
 
 \end{document}
