@@ -27,7 +27,7 @@ function [Ay,By,Ap,Bp] = loadings(mats_years,mu,Phi,Hcov,rho0dt,rho1dt,dt)
 %       r(t)   = rho0dt + rho1dt'*X(t); rho0dt and rho1dt are in per period units (e.g. rho0dt = rho0*dt)
 % Note: yields = Ay + X(t)'*By but if X(t) is T*p, yields are T*q: yields = ones(T,1)*Ay + X(t)*By
 % 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 mats_months = round(mats_years/dt);
 p  = length(mu);    maxM = max(mats_months);

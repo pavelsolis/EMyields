@@ -7,7 +7,7 @@ use $file_dta1, clear
 * Dates in Stata format
 /*	If format in Excel is: day/month/year HH:MM
 gen date  = dofc(time)
-gen datem = mofd(dofc(time))					// used to label graphs
+gen datem = mofd(dofc(time))										// used to label graphs
 format date %td
 format datem %tmCCYY
 order  date, first
@@ -17,9 +17,9 @@ order  cty, after(date)
 
 /* If format in Excel is: day/month/year */
 rename time date
-gen datem = mofd(date)							// used to label graphs
+gen datem = mofd(date)												// used to label graphs
 format datem %tmCCYY
-order  cty, after(date)
+order cty, after(date)
 
 * Business calendar based on current dataset
 capture {
@@ -47,7 +47,7 @@ predict lsap, resid
 corr path pathold if cty == "CHF"
 corr lsap lsapold if cty == "CHF"
 	// very highly correlated, path 0.9995 and lsap 0.9943
-drop pathold lsapold ed4 ed8 onrun10
+drop pathold lsapold ed8 onrun10
 order path lsap, after(mp1)
 
 
@@ -58,13 +58,13 @@ foreach v of varlist mp1 path lsap {
 	replace `v' = 0 if `v' == .
 }
 
-foreach v of varlist ffr ustp* usyp* usrr* { // scbp* scpi* sgdp* 
+foreach v of varlist ustp* usyp* {
     replace `v' = `v'*100
 }
 
 
 * Express variables from decimals to basis points
-foreach v of varlist usyc* nom* syn* rho* phi* dyp* dtp* myp* mtp* stp* rrt* {
+foreach v of varlist usyc* nom* syn* rho* phi* dyp* dtp* {
     replace `v' = `v'*10000
 }
 
@@ -120,16 +120,14 @@ label values ae grpnames
 * Label variables for use in figures and tables
 #delimit ;
 unab oldlabels : mp1 path lsap sdprm gdp inf une epuus
-				 epugbl globalip nom* syn* rho* phi* dyp* dtp* usyc* ustp* usyp*;
+				 epugbl globalip nom* syn* rho120m rho24m phi* dyp* dtp* usyc120m usyc24m ustp* usyp*;
 local newlabels `" "Target" "Path" "LSAP" "UCSV-Perm" "GDP Growth" "Inflation" "Unemployment" "EPU US" 
 	"EPU Global" "Global Ind. Prod." "Nominal" "Nominal" "Nominal" "Nominal" "Nominal" "Nominal" "Synthetic" "Synthetic" 
-	"Synthetic" "Synthetic" "Synthetic" "Synthetic" "Forward Premium" "Forward Premium" "Forward Premium" 
-	"Forward Premium" "Forward Premium" "Forward Premium" "Credit Risk" "Credit Risk" "Credit Risk" 
-	"Credit Risk" "Credit Risk" "Credit Risk" "E. Short Rate" "E. Short Rate" "E. Short Rate" 
+	"Synthetic" "Synthetic" "Synthetic" "Synthetic" "Forward Premium" "Forward Premium" "Credit Risk" "Credit Risk" 
+	"Credit Risk" "Credit Risk" "Credit Risk" "Credit Risk" "E. Short Rate" "E. Short Rate" "E. Short Rate" 
 	"E. Short Rate" "E. Short Rate" "E. Short Rate" "Term Premium" "Term Premium" "Term Premium" 
-	"Term Premium" "Term Premium" "Term Premium" "Yield" "Yield" "Yield" 
-	"Yield" "Yield" "Yield" "Term Premium" "Term Premium" "Term Premium" "Term Premium" 
-	"Expected Short Rate" "Expected Short Rate" "Expected Short Rate" "Expected Short Rate" "';
+	"Term Premium" "Term Premium" "Term Premium" "Yield" "Yield" "Term Premium" "Term Premium" "Term Premium" 
+	"Term Premium" "Expected Short Rate" "Expected Short Rate" "Expected Short Rate" "Expected Short Rate" "';
 #delimit cr
 local nlbls : word count `oldlabels'
 forvalues i = 1/`nlbls' {

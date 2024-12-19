@@ -3,8 +3,8 @@ function S = trend_inflation(S,currEM,trndcntrs,tfplot,tfsave)
 % by the HP filter on the months in which Consensus Economics generally
 % publish forecasts for emerging markets
 % 
-% m-files called: inflation_target, cntrstimetable
-% Pavel Solís (pavel.solis@gmail.com), September 2021
+% m-files called: cntrstimetable, inflation_target, save_figure
+% Pavel Solís (pavel.solis@gmail.com)
 %% 
 nEMs = length(currEM);
 if nargin < 4;  tfplot = false;	tfsave = false; end
@@ -67,5 +67,5 @@ if tfplot
     lgd = legend(lbl,'Orientation','horizontal','AutoUpdate','off');
     set(lgd,'Position',[0.3730 0.0210 0.2554 0.0357],'Units','normalized')
     figdir  = 'Surveys'; formats = {'eps'}; figsave = tfsave;
-    figname = ['CPI_' [trndcntrs{:}]]; save_figure(figdir,figname,formats,figsave)
+    figname = ['CPI_' [trndcntrs{:}]]; save_figure(figdir,figname,formats,figsave)  % generate figure A.2
 end

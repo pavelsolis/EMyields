@@ -1,8 +1,7 @@
 function TTvar = cntrstimetable(S,cntrs,fldname,tenor)
 % CNTRSTIMETABLE Return timetable w/ variable fldname for countries in cntrs
-% 
-% m-files called: none
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+
+% Pavel Solís (pavel.solis@gmail.com)
 %% 
 nctrs   = length(S);
 datehld = datetime(lbusdate(2001,3),'ConvertFrom','datenum');               % based on 1st obs of survey data

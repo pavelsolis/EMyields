@@ -2,7 +2,7 @@ function S = add_cr(S,matsout,currEM)
 % ADD_CR Report estimated credit risk compensation in a field
 
 % m-files called: syncdatasets
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 dt      = 1/12;
 ncntrs  = length(S);

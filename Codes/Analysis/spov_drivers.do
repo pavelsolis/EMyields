@@ -13,7 +13,6 @@ xtset $idm $tm
 drop date eomth
 order  datem, first
 replace cbp = cbp*100
-gen byte taper = datem >= tm(2013m5)
 
 
 * Compute monthly returns (in basis points)
@@ -36,7 +35,7 @@ local xtopt fe		// fe cluster($id)
 
 * Define global variables
 global x0 sdprm
-global x1 logvix logepuus logepugbl globalip //  rtspx rtoil vix epugbl globalip	// vix epugbl rtglobalip	// rtvix rtepugbl rtglobalip
+global x1 logvix logepuus logepugbl globalip
 global x2 cbp inf une zfx $x1
 
 
@@ -58,7 +57,7 @@ forvalues i = 1/`nlbls' {
 
 
 * ------------------------------------------------------------------------------
-* Table: TP and UCSV
+* Table B.1. TP and UCSV
 local tbllbl "f_tpucsv"
 eststo clear
 local j = 0
@@ -89,7 +88,7 @@ varlabels(, elist(gdp \midrule)) scalars("FE Fixed Effects" "Lags" "Countries No
 replace sdprm = L.sdprm if sdprm >= .
 
 * ------------------------------------------------------------------------------
-* Table: Drivers (Whole Sample)
+* Tables 4, 5, D.1 and D.2. Drivers
 local tbllbl "f_ycdcmp"
 eststo clear
 foreach t in 12 24 60 120 {
@@ -109,9 +108,6 @@ foreach t in 12 24 60 120 {
 			
 			if `group' == 1 {
 				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x2 if `condition' & phi`t'm != ., `xtopt'
-// 				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x0 $x2 if `condition' & phi`t'm != ., `xtopt'
-// 				`xtcmd' `v'`t'm usyc`t'm $x2 if `condition' & phi`t'm != ., `xtopt'
-// 				`xtcmd' `v'`t'm ustp`t'm c.ustp`t'm#i.taper usyp`t'm c.usyp`t'm#i.taper $x2 if `condition' & phi`t'm != ., `xtopt'
 				eststo mdl`j', addscalars(Lags e(lag) R2 e(r2_w) Countries e(N_g) Obs e(N))
 				estadd local FE Yes
 				quiet xtreg `v'`t'm ustp`t'm usyp`t'm $x2 if `condition', fe
@@ -124,80 +120,6 @@ foreach t in 12 24 60 120 {
 		varlabels(, elist(globalip \midrule)) scalars("FE Fixed Effects" "Lags" "Countries No. Countries" "Obs Observations" "R2 \(R^{2}\)") sfmt(%4.0fc %4.0fc %4.0fc %4.0fc %4.2fc)
 	}	// `group'
 	filefilter x.tex "$pathtbls/`tbllbl'`ty'y.tex", from(Observations) to(Observations) replace
-}	// `t'
-erase x.tex
-* ------------------------------------------------------------------------------
-
-* ------------------------------------------------------------------------------
-* Table: Drivers (Pre-GFC)
-local tbllbl "f_ycdcmp"
-eststo clear
-foreach t in 12 24 60 120 {
-	local ty = `t'/12
-	foreach group in 1 { // 0
-		local condition em == `group' & datem < tm(2008m9)
-		local j = 0
-		foreach v in nom dyp dtp phi {
-			local ++j
-			if `group' == 0 {
-				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x1 if `condition', `xtopt'
-				eststo mdl`j', addscalars(Lags e(lag) R2 e(r2_w) Countries e(N_g) Obs e(N))
-				estadd local FE Yes
-				quiet xtreg `v'`t'm ustp`t'm usyp`t'm $x1 if `condition', fe
-				xtcsd, pesaran abs
-			}
-			
-			if `group' == 1 {
-				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x2 if `condition' & phi`t'm != ., `xtopt'
-				eststo mdl`j', addscalars(Lags e(lag) R2 e(r2_w) Countries e(N_g) Obs e(N))
-				estadd local FE Yes
-				quiet xtreg `v'`t'm ustp`t'm usyp`t'm $x2 if `condition', fe
-				xtcsd, pesaran abs
-			}
-		}	// `v' variables
-		esttab mdl* using x.tex, replace fragment cells(b(fmt(2) star) se(fmt(2) par)) ///
-		nocons nomtitles nonumbers nonotes nolines noobs label booktabs collabels(none) ///
-		mgroups("Nominal" "E. Short Rate" "Term Premium" "Credit Risk", pattern(1 1 1 1 1 1) prefix(\multicolumn{@span}{c}{) suffix(}) span erepeat(\cmidrule(lr){@span}))  ///
-		varlabels(, elist(globalip \midrule)) scalars("FE Fixed Effects" "Lags" "Countries No. Countries" "Obs Observations" "R2 \(R^{2}\)") sfmt(%4.0fc %4.0fc %4.0fc %4.0fc %4.2fc)
-	}	// `group'
-	filefilter x.tex "$pathtbls/`tbllbl'`ty'y_pregfc.tex", from(Observations) to(Observations) replace
-}	// `t'
-erase x.tex
-* ------------------------------------------------------------------------------
-
-* ------------------------------------------------------------------------------
-* Table: Drivers (Post-GFC)
-local tbllbl "f_ycdcmp"
-eststo clear
-foreach t in 12 24 60 120 {
-	local ty = `t'/12
-	foreach group in 1 { // 0
-		local condition em == `group' & datem >= tm(2008m9)
-		local j = 0
-		foreach v in nom dyp dtp phi {
-			local ++j
-			if `group' == 0 {
-				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x1 if `condition', `xtopt'
-				eststo mdl`j', addscalars(Lags e(lag) R2 e(r2_w) Countries e(N_g) Obs e(N))
-				estadd local FE Yes
-				quiet xtreg `v'`t'm ustp`t'm usyp`t'm $x1 if `condition', fe
-				xtcsd, pesaran abs
-			}
-			
-			if `group' == 1 {
-				`xtcmd' `v'`t'm ustp`t'm usyp`t'm $x2 if `condition' & phi`t'm != ., `xtopt'
-				eststo mdl`j', addscalars(Lags e(lag) R2 e(r2_w) Countries e(N_g) Obs e(N))
-				estadd local FE Yes
-				quiet xtreg `v'`t'm ustp`t'm usyp`t'm $x2 if `condition', fe
-				xtcsd, pesaran abs
-			}
-		}	// `v' variables
-		esttab mdl* using x.tex, replace fragment cells(b(fmt(2) star) se(fmt(2) par)) ///
-		nocons nomtitles nonumbers nonotes nolines noobs label booktabs collabels(none) ///
-		mgroups("Nominal" "E. Short Rate" "Term Premium" "Credit Risk", pattern(1 1 1 1 1 1) prefix(\multicolumn{@span}{c}{) suffix(}) span erepeat(\cmidrule(lr){@span}))  ///
-		varlabels(, elist(globalip \midrule)) scalars("FE Fixed Effects" "Lags" "Countries No. Countries" "Obs Observations" "R2 \(R^{2}\)") sfmt(%4.0fc %4.0fc %4.0fc %4.0fc %4.2fc)
-	}	// `group'
-	filefilter x.tex "$pathtbls/`tbllbl'`ty'y_postgfc.tex", from(Observations) to(Observations) replace
 }	// `t'
 erase x.tex
 * ------------------------------------------------------------------------------

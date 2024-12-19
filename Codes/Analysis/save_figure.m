@@ -5,7 +5,7 @@ function save_figure(subfolder,figname,formats,saveit)
 %   formats: cell array with formats in which the figure will be saved
 %	saveit: true for actually saving the figure (avoids commenting the line calling the function)
 
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if saveit == 1
     figname = fullfile('..','..','Docs','Figures',subfolder,figname);

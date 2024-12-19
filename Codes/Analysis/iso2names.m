@@ -4,7 +4,7 @@ function ccy_names = iso2names(iso)
 %   iso: three-letter code(s) indicating the currency (ISO 4217)
 %   ccy_names: country names, currency names, three-letter and -digit codes
 
-% Pavel Solís (pavel.solis@gmail.com), August 2021
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Retrieve codes from sources
 pathc  = pwd;
@@ -84,9 +84,3 @@ ccy_names = ccy_names(:,[2 3 4 1]);
 
 aux3 = ccy_names(idx_imf,:);                                % reorder to alphabetical
 ccy_names = aux3(idx_idx,:);                                % reorder to match original
-
-%% Sources
-% 
-% Delete all text within parenthesis
-% https://stackoverflow.com/questions/38839529/...
-% use-of-regexprep-in-matlab-to-remove-characters-within-parentheses-in-matlab

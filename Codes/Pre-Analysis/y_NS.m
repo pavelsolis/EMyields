@@ -9,7 +9,7 @@ function yields = y_NS(params,maturities)
 %     OUTPUT
 % double: yields - matrix of yields; rows: dates, cols: maturities
 %
-% Pavel Solís (pavel.solis@gmail.com), March 2019
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if size(maturities,2) == 1 ; maturities = maturities'; end  % Ensure maturities is a row vector
 

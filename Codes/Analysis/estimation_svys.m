@@ -6,10 +6,10 @@ function [ylds_Q,ylds_P,termprm,params] = estimation_svys(yldsvy,matsY,matsS,mat
 % matsY    - maturities of yields in years
 % matsS    - maturities of surveys in years
 % matsout  - bond maturities (in years) to be reported
-% dt       - length of period in years (eg. 1/12 for monthly data)
+% dt       - length of period in years (e.g., 1/12 for monthly data)
 % params0  - initial values of parameters
-% sgmSfree - logical for whether to estimate sgmS (o/w fixed at 75 bp)
-% simplex  - logical for whether to estimate using fminsearch (default) or fminunc
+% sgmSfree - logical, true to estimate sgmS (o/w fixed at 75 bp)
+% simplex  - logical, true (default) to estimate using fminsearch (o/w fminunc)
 %
 %	OUTPUT
 % ylds_Q  - estimated yields under Q measure
@@ -18,7 +18,7 @@ function [ylds_Q,ylds_P,termprm,params] = estimation_svys(yldsvy,matsY,matsS,mat
 % params  - estimated parameters
 
 % m-files called: vars2parest, llkfn, atsm_params, Kfs, parest2vars, loadings
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if nargin < 8; simplex = true; end                                          % set fminsearch as default solver
 nobs   = size(yldsvy,1);                                                    % number of observations
@@ -67,7 +67,7 @@ mu_xQ     = mu_xP - cSgm*lmbd0;     PhiQ = PhiP  - cSgm*lmbd1;
 [AnP,BnP] = loadings(matsout,mu_xP,PhiP,Hcov,rho0,rho1,dt);
 ylds_Q    = ones(nobs,1)*AnQ + xs*BnQ;
 ylds_P    = ones(nobs,1)*AnP + xs*BnP;
-termprm   = ylds_Q - ylds_P;        % = ones(nobs,1)*(AnQ - AnP) + xs*(BnQ - BnP);
+termprm   = ylds_Q - ylds_P;                                                % = ones(nobs,1)*(AnQ - AnP) + xs*(BnQ - BnP);
 
 % Report parameters
 params.mu_xP = mu_xP;   params.PhiP  = PhiP;

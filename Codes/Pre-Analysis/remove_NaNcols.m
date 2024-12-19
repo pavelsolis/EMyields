@@ -9,7 +9,7 @@ function [data,hdr] = remove_NaNcols(header,dataset)
 % double: data - matrix with historic values (with no all-NaN columns) 
 % cell: hdr    - updated header (if no row 1 with titles in header, neither do hdr)
 
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 data     = dataset;
 colsdata = size(data,2);

@@ -15,11 +15,11 @@ function [SPRDvars,SPRDhdr] = compute_spreads(LC,ccy_type,header,dataset)
 %	SPRDhdr: header ready to be appended (i.e. NO extra first row with titles)
 
 % m-files called: extractvars, construct_hdr
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Type of US yield curve
 ycUS = {'LCNOM','LC'};	optUS = 1;          	% LCNOM is GSW, LC is Bloomberg
-ycCY = {'LCNOM','LC'};  optCY = 1;            	% LCNOM is NSS, LC is Bloomberg
+ycCY = {'LCNOM','LC'};  optCY = 1;            	% LCNOM is ZC CC, LC is Bloomberg
 
 switch ccy_type
     case 1  % LC case

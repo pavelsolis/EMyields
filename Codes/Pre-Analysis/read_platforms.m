@@ -3,10 +3,10 @@ function [TTpltf,THpltf] = read_platforms()
 %   TTpltf: stores historical data in a timetable
 %   THpltf: stores headers in a table
 
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
-pathd  = fullfile(pathc,'..','..','Data','Raw');       % platform-specific file separators
+pathd  = fullfile(pathc,'..','..','Data','Raw');                            % platform-specific file separators
 namefl = {'AE_EM_Curves_Data.xlsx','EM_Currencies_Data.xlsx'};
 nfls   = length(namefl);
 
@@ -32,7 +32,6 @@ end
 
 % Clean dataset
 TTpltf.Properties.VariableNames = erase(TTpltf.Properties.VariableNames,{'Curncy','Index','Comdty'});
-% THpltf.Ticker = TTpltf.Properties.VariableNames';     % variable names in TTdt as tickers in THdt
 
 % Formatting
 TTpltf.Date.Format = 'dd-MMM-yyyy';

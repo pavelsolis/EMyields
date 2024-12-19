@@ -2,9 +2,8 @@ function S = add_vars(S,currEM)
 % ADD_VARS Add variables to structure S (std of survey errors, real rates, 
 % survey-based term premia, EPU indexes, inflation volatility)
 
-% m-files called: datesminmax, syncdatasets, read_epu_idxs, cntrstimetable,
-% stockwatson
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+% m-files called: syncdatasets, read_epu_idxs, cntrstimetable, stockwatson
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 nEMs = length(currEM);
 

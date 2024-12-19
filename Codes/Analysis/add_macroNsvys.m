@@ -1,8 +1,8 @@
 function S = add_macroNsvys(S,currEM)
 % ADD_MACRONSVYS Add macro variables and survey data to structure S
 
-% m-files called: read_macrovars, read_surveys, read_spf, trend_inflation, datesminmax
-% Pavel Solís (pavel.solis@gmail.com), January 2021
+% m-files called: read_macrovars, read_surveys, read_spf, datesminmax, trend_inflation
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 [data_macro,hdr_macro] = read_macrovars(S);                             % macro and policy rates
 [data_svys,hdr_svys]   = read_surveys();                                % CPI and GDP forecasts
@@ -43,7 +43,7 @@ for k0  = 1:2
         if sum(fltrCTY) > 1                                             % country w/ survey data
             dtmn   = datesminmax(S,k1);                              	% relevant starting date for surveys
             fltrDT = any(~isnan(svyvar),2) & svydata(:,1) >= dtmn;      % svy obs after first yld obs
-            S(k1).(['s' lower(macrovr{k0})]) = [nan svytnrs;            % store survey data on macro vars
+            S(k1).(['s' lower(macrovr{k0})]) = [nan svytnrs;            % store survey data
                                                 svydata(fltrDT,1) svyvar(fltrDT,:)];
         end
     end

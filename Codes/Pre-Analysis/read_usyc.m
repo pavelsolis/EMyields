@@ -5,7 +5,7 @@ function [TTusyc,THusyc] = read_usyc()
 %   THusyc: stores headers in a table
 
 % m-files called: construct_hdr
-% Pavel Solís (pavel.solis@gmail.com), August 2021
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw');                            % platform-specific file separators

@@ -1,8 +1,7 @@
 function [PhiP,cSgm,lmbd1,lmbd0,mu_xP,rho1,rho0,sgmY,sgmS] = parest2vars(parest)
-% PAREST2VARS Transform vector parest into variables contained in it
-% Parameters vectorized in parest: PhiP;cSgm;lmbd1;lmbd0;mu_xP;rho1;rho0;sgmY;sgmS
+% PAREST2VARS Transform vector parest into the variables it contains
 
-% Pavel Solís (pavel.solis@gmail.com), May 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Fix number of constants in parest to identify dimension of state vector
 % ncons = 3;                                                  % number of constants in parest

@@ -1,7 +1,7 @@
 function [mrgd,dtst1,dtst2] = syncdatasets(dtst1,dtst2,synctype)
 % SYNCDATASETS Synchronize arrays (default is intersection)
 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if nargin < 3; synctype = 'intersection'; end
 hdr1  = dtst1(1,2:end);

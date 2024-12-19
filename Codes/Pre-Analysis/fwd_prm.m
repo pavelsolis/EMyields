@@ -6,7 +6,7 @@ function [data_fp,hdr_fp,tnrsLCfp] = fwd_prm(dataset_daily,header_daily,curncs)
 %   tnrsLCfp: reports FP tenors per currency
 
 % m-files called: compute_fp_short, compute_fp_long, remove_NaNcols
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %% Construct the FP Database
 % LCs  = ['BRL2'; curncs]';         % there are two formulas for Brazil
 hdr_fp  = {};                       % no row 1 with titles (i.e. ready to be appended)

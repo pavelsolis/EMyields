@@ -3,7 +3,7 @@ function [dtmn,dtmx] = datesminmax(S,k0)
 % and synthetic yields, return earliest and latest date. If available, daily
 % data has precedence
 
-% Pavel Solís (pavel.solis@gmail.com), July 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 flddts = '_blncd';
 fldnms = fieldnames(S);

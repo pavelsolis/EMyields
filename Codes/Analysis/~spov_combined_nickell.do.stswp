@@ -1,20 +1,25 @@
 * ==============================================================================
-* Local projections: EM regions
+* Local projections: AE and EM
 * ==============================================================================
 use $file_dta2, clear
-// global horizon = 45		// in days
+
 
 * Define local variables
 local xtcmd xtscc			// xtreg
 local xtopt fe level(90)	// fe level(90) cluster($id)
 local maxlag  = 1
-local vars nom dyp dtp phi
 
-forvalues region = 1/4 {
-	if `region' == 1 local rgn "LA"
-	if `region' == 2 local rgn "EE"
-	if `region' == 3 local rgn "EA"
-	if `region' == 4 local rgn "MA"
+foreach group in 1 { // 0 1 {
+	if `group' == 0 {
+		local grp "AE"
+		local vars nom dyp dtp // nom usyc rho phi	//  nom syn rho phi
+		local region regionae
+	}
+	else {
+		local grp "EM"
+		local vars nom dyp dtp phi
+		local region regionem
+	}
 	
 	foreach t in 24 120 {
 		// regressions
@@ -30,14 +35,14 @@ forvalues region = 1/4 {
 			}
 			
 			// controls
-			local ctrl`v'`t'm l(1/`maxlag').d`v'`t'm l(1/`maxlag').fx
+			local ctrl`v'`t'm l(1/`maxlag').fx	// l(1/`maxlag').d`v'`t'm l(1/`maxlag').fx
 			
 			forvalues h = 0/$horizon {
 				// response variables
 				capture gen `v'`t'm`h' = (f`h'.`v'`t'm - l.`v'`t'm)
 				
 				// conditions
-				local condition em & regionem == `region'
+				local condition em == `group'	// & `region' == 4
 				
 				// one regression for each horizon
 				if `h' == 0 {
@@ -85,15 +90,13 @@ forvalues region = 1/4 {
 				graphregion(color(white)) plotregion(color(white)) legend(off) name(`v'`t'm, replace) ///
 				title(`: variable label `v'`t'm', color(black) size(medium))
 
-// 				graph export $pathfigs/LPs/`shk'/`rgn'/`v'`t'm.eps, replace
-				local graphs`shock'`rgn'`t' `graphs`shock'`rgn'`t'' `v'`t'm
+				local graphs`shock'`grp'`t' `graphs`shock'`grp'`t'' `v'`t'm
 				drop *_`shock'_`v'`t'm				// b_ and confidence intervals
 			}	// `v' yield component
 
-			graph combine `graphs`shock'`rgn'`t'', rows(1) ycommon
-			graph export $pathfigs/LPs/`shk'/REGION/`shk'`rgn'nomyptpphi`t'm.eps, replace
+			graph combine `graphs`shock'`grp'`t'', rows(1) ycommon
+			graph export $pathfigs/LPs/`shk'/`grp'/`shk'`grp'nomyptpphi`t'mNickell.eps, replace
 			graph drop _all
-			local graphs`shock'`rgn'`t'				// blanks out macro
 		}		// `shock'
 	}		// `t' tenor
-}		// EM `region'
+}		// `group' AE or EM

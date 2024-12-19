@@ -11,7 +11,7 @@ function [fltr,commontnrs] = matchtnrs(fltr,tnr,idx)
 % cell: fltr - fltr updated with the same tenors for the different types
 % cell: commontnrs - common tenors for the different types
 %
-% Pavel Solís (pavel.solis@gmail.com), March 2019
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 nvars = size(tnr,2);
 if nvars == 1

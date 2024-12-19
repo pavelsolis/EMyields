@@ -1,9 +1,9 @@
 function S = se_components(S,matsout,currEM)
 % SE_COMPONENTS Report standard errors for yield components due to uncertainty 
-% in the estimated parameters. The state is assumed to be known with certainty
+% in the estimated parameters; the state is assumed to be known with certainty
 
 % m-files called: syncdatasets, vars2parest, parest2vars, loadings
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 dt      = 1/12;
 epsilon = 1e-9;                                                             % 0.00001 basis point
@@ -69,7 +69,7 @@ for k0 = 1:ncntrs
         thetanew(k1) = thetanew(k1) - epsilon;
 
         % New decomposition (assumes no uncertainty in state)
-        [PhiP,cSgm,lmbd1,lmbd0,mu_xP,rho1,rho0] = parest2vars(thetanew);    % sgmY and sgmS no needed
+        [PhiP,cSgm,lmbd1,lmbd0,mu_xP,rho1,rho0] = parest2vars(thetanew);    % sgmY and sgmS not needed
         Hcov      = cSgm*cSgm';             cSgm = chol(Hcov,'lower');      % crucial: cSgm from Cholesky
         mu_xQ     = mu_xP - cSgm*lmbd0;     PhiQ = PhiP  - cSgm*lmbd1;
         [AnQ,BnQ] = loadings(matsout,mu_xQ,PhiQ,Hcov,rho0,rho1,dt);

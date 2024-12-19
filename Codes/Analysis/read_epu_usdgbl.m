@@ -2,7 +2,7 @@ function TT_epu = read_epu_usdgbl()
 % READ_EPU_USDGBL Read U.S. (daily) and global (monthly) economic policy 
 % uncertainty (EPU) indexes
 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw','EPU');                      % platform-specific file separators

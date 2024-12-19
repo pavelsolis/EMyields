@@ -12,7 +12,7 @@ function [dataset,headers] = append_dataset(dataset1,dataset2,hdrs1,hdrs2)
 % double: dataset - matrix with historic values for all variables, col 1 has dates
 % cell: headers   - contains headers for all variables, row 1 has titles
 %
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Number of columns of headers must be the same
 if size(hdrs1,2) ~= size(hdrs2,2)

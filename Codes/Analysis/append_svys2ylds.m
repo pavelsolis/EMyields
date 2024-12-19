@@ -2,7 +2,7 @@ function S = append_svys2ylds(S,currEM)
 % APPEND_SVYS2YLDS Append policy rate forecasts to yields of emerging
 % markets; only yield data for advanced countries
 
-% Pavel Solís (pavel.solis@gmail.com), July 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 ncntrs = length(S);
 nEMs   = length(currEM);

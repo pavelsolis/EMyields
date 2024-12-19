@@ -1,4 +1,4 @@
-function TT = construct_panel(S,matsout,currEM,currAE)
+function construct_panel(S,matsout,currEM,currAE)
 % CONSTRUCT_PANEL Generate dataset for regression analysis
 % 
 %	INPUTS
@@ -6,19 +6,15 @@ function TT = construct_panel(S,matsout,currEM,currAE)
 % matsout - maturities (in years) to be reported
 % currEM  - emerging market countries in the sample
 % currAE  - advanced countries in the sample
-%
-%	OUTPUT
-% TT - dataset in a time table
 
-% m-files called: read_mps, read_kw, read_spf, read_global_idxs, read_epu_usdgbl,
-% read_financialvars, read_platforms, read_usyc, datesminmax
-% Pavel Solís (pavel.solis@gmail.com), September 2020
-% 
+% m-files called: read_mps, read_kw, read_global_idxs, read_epu_usdgbl,
+%                 read_financialvars, read_platforms, read_usyc, datesminmax
+% Pavel Solís (pavel.solis@gmail.com)
 %% Define variables
 dtend   = datetime('11-Aug-2021');                                          % end of sample
-flds1   = ['d_gsw' strcat({'dn','ds','dr'},'_blncd') strcat('d_',{'cr','yP','tp'}) strcat('bsl_',{'yP','tp'})];
-varnms1 = {'usyc','nom','syn','rho','phi','dyp','dtp','myp','mtp'};
-flds2   = {'scbp','scpi','sgdp','stp','rrt','cbp','inf','une','ip','gdp','sdprm','sdcyc','epu'};
+flds1   = ['d_gsw' strcat({'dn','ds','dr'},'_blncd') strcat('d_',{'cr','yP','tp'})];
+varnms1 = {'usyc','nom','syn','rho','phi','dyp','dtp'};
+flds2   = {'cbp','inf','une','gdp','sdprm'};
 varnms2 = flds2;
 flds    = [flds1 flds2];                                                    % EM-specific + common variables
 varnms  = [varnms1 varnms2];                                                % names in new dataset
@@ -28,8 +24,6 @@ ncntrs  = length(S);
 %% Read data
 TT_mps = read_mps();
 TT_kw  = read_kw(matsout);
-TT_rr  = read_spf();
-TT_rr.Properties.VariableNames = strrep(TT_rr.Properties.VariableNames,{'01Y','05Y','10Y'},{'12M','60M','120M'});
 TT_gbl = read_global_idxs();
 TT_epu = read_epu_usdgbl();
 [data_finan,hdr_finan] = read_financialvars();
@@ -55,9 +49,9 @@ TTccy{:,fltrFX} = 1./TTccy{:,fltrFX};
 
 %% Variables common to all countries
 hdr_finan(ismember(hdr_finan(:,1),'USD') & ismember(hdr_finan(:,2),'STX'),2) = {'SPX'};
-fltrMPS = contains(TT_mps.Properties.VariableNames,{'MP1','ED4','ED8','ONRUN10','PATH','LSAP'}); % US MPS
+fltrMPS = contains(TT_mps.Properties.VariableNames,{'MP1','ED8','ONRUN10','PATH','LSAP'}); % US MPS
 fltrKW  = contains(TT_kw.Properties.VariableNames,{'TP','yP'});             % Kim-Wirght decomposition
-fltrUSD = ismember(hdr_finan(:,2),{'VIX','FFR','SPX','OIL'});               % international variables
+fltrUSD = ismember(hdr_finan(:,2),{'VIX','SPX','OIL'});                     % international variables
 fltrLC  = ismember(hdr_finan(:,2),'STX');                                   % domestic variable
 findts  = data_finan(:,1);
 findata = data_finan(:,fltrUSD);
@@ -65,7 +59,6 @@ finnms  = lower(hdr_finan(fltrUSD,2)');
 TT0     = array2timetable(findata,'RowTimes',datetime(findts,'ConvertFrom','datenum'),'VariableNames',finnms);
 TT0     = synchronize(TT0,TT_mps(:,fltrMPS),'union');                       % add MP shocks
 TT0     = synchronize(TT0,TT_kw(:,fltrKW),'union');                         % add KW decomposition
-TT0     = synchronize(TT0,TT_rr,'union');                                   % add US real rates
 TT0     = synchronize(TT0,TT_gbl,'union');                                  % add global activity indexes
 TT0     = synchronize(TT0,TT_epu,'union');                                  % add EPU indexes (US and global)
 
@@ -136,13 +129,9 @@ TT.Time.Format = 'dd-MMM-yyyy';
 % Define dummies
 datesmth = unique(lbusdate(year(TT.Time),month(TT.Time)));
 TT.eomth = ismember(TT.Time,datetime(datesmth,'ConvertFrom','datenum'));    % end of month
-TT.eoqtr = (mod(month(TT.Time),3) == 0) & TT.eomth;                         % end of quarter
 TT.em    = ismember(TT.cty,currEM);                                         % emerging markets
 
 %% Export table to Excel
 filename = fullfile(pathc,'..','..','Data','Analytic','dataspillovers.xlsx');
+delete(filename);                                                           % o/w write over existing file
 writetimetable(TT,filename,'Sheet',1,'Range','A1')
-
-%% Sources
-% Merge tables with different dimensions
-% https://www.mathworks.com/matlabcentral/answers/179290-merge-tables-with-different-dimensions

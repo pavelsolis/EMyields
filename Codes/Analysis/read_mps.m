@@ -1,11 +1,11 @@
 function TT_mps = read_mps()
 % READ_MPS Read U.S. monetary policy shocks
 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
-pathd  = fullfile(pathc,'..','..','Data','Raw','MPS');                      % platform-specific file separators
-namefl = 'wide_mar2019.xls';
+pathd  = fullfile(pathc,'..','..','Data','Raw');                            % platform-specific file separators
+namefl = 'Asset_Prices_ID_Data.xls';
 
 cd(pathd)
 opts   = detectImportOptions(namefl);

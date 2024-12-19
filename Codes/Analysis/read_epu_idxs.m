@@ -2,7 +2,7 @@ function S = read_epu_idxs(S)
 % READ_EPU_IDXS Read economic policy uncertainty indexes (Baker-Bloom-Davis, 2016)
 % Files are not standardized, need to deal with exceptions
 
-% Pavel Solís (pavel.solis@gmail.com), September 2021
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc   = pwd;
 pathd   = fullfile(pathc,'..','..','Data','Raw','EPU');                     % platform-specific file separators

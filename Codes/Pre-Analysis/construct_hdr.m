@@ -15,7 +15,7 @@ function header = construct_hdr(varargin)
 % A = construct_hdr(currency, type, ticker, name, tenor);
 % A = construct_hdr('USD', 'LC', ticker, 'YC', tenor, NaN, 'GSW');
 %
-% Pavel Solís (pavel.solis@gmail.com), March 2018
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 nvars = length(varargin);                     % Number of input variables
 sizes = zeros(nvars,1);

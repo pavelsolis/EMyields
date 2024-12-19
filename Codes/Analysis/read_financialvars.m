@@ -3,7 +3,7 @@ function [data_finan,hdr_finan] = read_financialvars()
 %   data_finan: stores historical data
 %   hdr_finan: stores headers
 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw');                            % platform-specific file separators

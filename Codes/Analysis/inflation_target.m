@@ -1,8 +1,7 @@
 function [ld,lu] = inflation_target(cntry)
 % INFLATION_TARGETS Return lower and upper bands of the inflation target
-% 
-% m-files called: none
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+
+% Pavel Solís (pavel.solis@gmail.com)
 %% 
 switch cntry
     case {'COP','HUF','KRW','MXN'}

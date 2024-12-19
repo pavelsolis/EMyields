@@ -1,7 +1,6 @@
 function [CCS,hdr] = compute_fp_long(LC,header,dataset)
 % COMPUTE_FP_LONG Compute fixed-for-fixed cross-currency swaps for maturities >= 1Y
 % Formulas are in 'AE_EM_Curves_Tickers.xlsx'. See Du & Schreger (2016) and Du, Im & Schreger (2018)
-% m-files called: extractvars, split_merge_vars, construct_hdr
 %
 %     INPUTS
 % char: LC        - local currency for which CCS will be computed
@@ -12,7 +11,8 @@ function [CCS,hdr] = compute_fp_long(LC,header,dataset)
 % double: CCS - matrix of historic CCS (rows) for different tenors (cols)
 % cell: hdr   - header ready to be appended (NO extra first row with titles)
 
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% m-files called: extractvars, split_merge_vars, construct_hdr
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 ccy_AE = {'AUD','CAD','CHF','DKK','EUR','GBP','JPY','NOK','NZD','SEK'};
 switch LC
@@ -93,18 +93,18 @@ if strcmp(LC,'JPY') || strcmp(LC,'NOK')
     types        = {'IRS','TBS','BS','IRS_USD'};
     [vars2,tnr2] = extractvars(currencies,types,header,dataset);
     IRS = vars2{1}; TBS = vars2{2}; BS = vars2{3}; IRS_USD = vars2{4};
-    TBS(isnan(TBS)) = 0;                                          % allows it to compute CCS when TBS is NaN
+    TBS(isnan(TBS)) = 0;                                                    % allows it to compute CCS when TBS is NaN
 
     CCS2 = IRS - TBS./100 + BS./100 - IRS_USD;
 
-    [CCS,tnr] = split_merge_vars(LC,CCS1,CCS2,tnr1,tnr2,dataset); % if CCS* as cell arrays, may not need iscell
+    [CCS,tnr] = split_merge_vars(LC,CCS1,CCS2,tnr1,tnr2,dataset);           % if CCS* as cell arrays, may not need iscell
 end
 
 % Header
 name = strcat(LC,' CROSS-CURRENCY SWAP',{' '},tnr,' YR');
-hdr  = construct_hdr(LC,'RHO','N/A',name,tnr,' ',' ');         % Note: No extra row 1 (title)
+hdr  = construct_hdr(LC,'RHO','N/A',name,tnr,' ',' ');                      % Note: No extra row 1 (title)
 
-% if strcmp(LC,'BRL2')     % Special case for Brazil since 2 ways to compute CCS
+% if strcmp(LC,'BRL2')                                                      % Since 2 ways to compute CCS for BRL
 %     hdr  = construct_hdr(LC,'RHO2','N/A',name,tnr,' ',' ');
 % end
 

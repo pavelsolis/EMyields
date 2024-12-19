@@ -3,12 +3,12 @@ function TT_rr = read_spf()
 % and returns the implied forecasts for the real interest rate
 %   TT_rr: stores historical data at monthly frequency
 
-% Pavel Solís (pavel.solis@gmail.com), July 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw','SPF');           	% platform-specific file separators
-namefl = {'Mean_TBILL_Level','Mean_BILL10_Level','Mean_CPI_Level','Mean_CPI5YR_Level','Mean_CPI10_Level'};
-namefl = strcat(namefl,'.xlsx');
+namefl = {'TBILL','BILL10','CPI','CPI5YR','CPI10'};
+namefl = strcat('Mean_',namefl,'_Level.xlsx');
 nfiles = length(namefl);
 
 TT_rr = [];

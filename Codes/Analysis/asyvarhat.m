@@ -1,8 +1,8 @@
 function S = asyvarhat(S,currEM)
 % ASYVARHAT Report estimates of the asymptotic covariance matrix
 
-% m-files called: splityldssvys, llkfn, llkfns, vars2parest, hessian
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% m-files called: splityldssvys, llkfn, llkfns, vars2parest, hessian (from derivest folder)
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 addpath(genpath('derivest'))
 dt      = 1/12;
@@ -62,7 +62,7 @@ for k0 = 1:ncntrs
         end
     end
     
-    % Robust numerical differentiation (warnings + 2 hours to run)
+    % Robust numerical differentiation (warning: 2+ hours to run)
 %     llkhan = @(x)llkfn(x,ynsvys',x00,P00,matsY,matsS,dt);
 %     Hess2  = hessian(llkhan,theta0);
     

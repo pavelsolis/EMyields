@@ -13,7 +13,7 @@ function [fltr,tnr,idx] = fltr4tickers(currency,type,floatleg,header)
 % cell/double: tnr - available tenors
 % double: idx      - position of tickers in header (the space of tickers)
 
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if strcmp(type,'IRS') && ~isempty(floatleg) % Case of IRS convention for G10
     fltr = ismember(header(:,1),currency) & ismember(header(:,2),type) & contains(header(:,6),floatleg);

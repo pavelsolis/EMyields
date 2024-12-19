@@ -6,20 +6,20 @@ function S = atsm_estimation(S,matsout,sgmSfree,simplex)
 % S        - structure with fields mn_ylds and ms_ylds containing nominal 
 %            and synthetic bond yields and survey forecasts if available
 % matsout  - bond maturities (in years) to be reported
-% sgmSfree - logical for whether to estimate sgmS (o/w fixed at 75 bp)
-% simplex  - logical for whether to estimate using fminsearch (default) or fminunc
+% sgmSfree - logical, true to estimate sgmS (o/w fixed at 75 bp)
+% simplex  - logical, true (default) to estimate using fminsearch (o/w fminunc)
 %
 %	OUTPUT
 % S - structure includes estimated yields under Q and P measures, estimated
 % term premia, estimated parameters for nominal and synthetic yield curves
-%
+
 % m-files called: splityldssvys, estimation_jsz, estimation_svys
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 addpath(genpath('jsz_code'))
 if nargin < 4; simplex = true; end                                          % set fminsearch as default solver
 p       = 3;                                                                % number of state vectors
-dt      = 1/12;                                                             % time period in years
+dt      = 1/12;                                                             % time period in months
 ncntrs  = length(S);
 prefix  = {'mn','ms'};
 if sgmSfree; sgmtype = 'f'; else; sgmtype = 'b'; end                        % free vs baseline case

@@ -9,8 +9,7 @@ function [data_zc,hdr_zc,fitrprt] = zc_yields(dataset,header,curncs,tfnss,tfplot
 %   fitrprt: reports NSS fit (country, average RMSE in %, minutes to fit)
 
 % m-files called: fltr4tickers, construct_hdr; y_NS, y_NSS
-% Pavel Solís (pavel.solis@gmail.com), August 2020
-
+% Pavel Solís (pavel.solis@gmail.com)
 %% Zero-coupon continuosly compounded yield curves for advanced and emerging economies
 hdr_zc  = {};                                                   % no title row (ie. ready to be appended)
 data_zc = dataset(:,1);
@@ -130,7 +129,7 @@ function [yldszc,params1model,rmse] = fit_NS_S(yzc2fit,tnrsin,tnrsout,params0mod
 % FIT_NS_S Return zero-coupon yields yldszc after fitting NS (if max(tnrs) <= 10Y)
 % or NSS (if max(tnrs) > 10Y) model to yzc2fit taking params1data (of length 6) and,
 % if available, params0model (of length 4 or 6) as initial values
-
+%%
 options = optimoptions('lsqcurvefit','Display','off'); lb = []; ub = [];
 if size(yzc2fit,1) ~= 1; yzc2fit = yzc2fit'; end            % ensure yzc2fit is a row vector
 if isempty(params0model) || (length(params0model) == 4 && max(tnrsin) > 10)

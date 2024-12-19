@@ -2,10 +2,10 @@ function [TT_kw,kwtp,kwyp] = read_kw(maturities)
 % READ_KW Read the Kim-Wright decomposition of the US yield curve from FRED
 
 % m-files called: getFredData, syncdatasets
-% Pavel Solís (pavel.solis@gmail.com), July 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 datemn = datestr(datenum('1-Jan-2000'),29);                         % 29: date format ID
-datemx = datestr(datenum(today()),29);
+datemx = datestr(datenum('11-Aug-2021'),29);
 series = {'THREEFY','THREEFYTP'};                                   % fitted yields and term premium
 mats   = maturities(rem(maturities,1) == 0 & maturities <= 10);   	% only annual maturities up to 10Y
 nmats  = length(mats);

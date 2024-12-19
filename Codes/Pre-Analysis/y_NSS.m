@@ -1,7 +1,6 @@
 function yields = y_NSS(params,maturities)
 % This function returns a panel of zero yield curves implied by the
 % Nelson-Siegel-Svensson model for the specified maturities.
-% m-files called: y_NS.m
 %
 %     INPUTS
 % double: params - matrix of parameters; rows: dates, cols: beta0 to beta3, tau1, tau2
@@ -9,8 +8,9 @@ function yields = y_NSS(params,maturities)
 %
 %     OUTPUT
 % double: yields - vector of yields; rows: dates, cols: maturities
-%
-% Pavel Solís (pavel.solis@gmail.com), March 2019
+
+% m-files called: y_NS.m
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if size(maturities,2) == 1 ; maturities = maturities'; end  % Ensure maturities is a row vector
 

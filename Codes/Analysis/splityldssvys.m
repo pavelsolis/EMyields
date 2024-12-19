@@ -2,8 +2,7 @@ function [dates,yonly,ynsvys,matsY,matsS] = splityldssvys(S,k,fldname)
 % SPLITYLDSSVYS Report yield and survey data separately along with their 
 % maturities and dates for country k in field fldname
 
-% m-files called: none
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 dates  = S(k).(fldname)(2:end,1);
 ynsvys = S(k).(fldname)(2:end,2:end);

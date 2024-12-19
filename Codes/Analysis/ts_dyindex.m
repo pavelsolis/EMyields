@@ -1,13 +1,12 @@
 function [DYindex,DYtable] = ts_dyindex(S,cntrs,fldname,tenor)
 % TS_DYINDEX Report the Diebold-Yilmaz (2014) connectedness index and table
 % as implemented by Binh Thai Pham (2020)
-%
-% m-files called: cntrstimetable, computeDYtable, computeDYRolling
-% Pavel Solís (pavel.solis@gmail.com), August 2020
-% 
+
+% m-files called: cntrstimetable; computeDYtable, computeDYRolling (from dy_code folder)
+% Pavel Solís (pavel.solis@gmail.com)
 %% Load data
 addpath(genpath('dy_code'))
-TTy = cntrstimetable(S,cntrs,fldname,tenor);                                   % extract information
+TTy = cntrstimetable(S,cntrs,fldname,tenor);                                % extract information
 hdr = char(TTy.Properties.VariableNames');                                  % extract header
 dts = datenum(TTy.Time);                                                    % extract dates
 y   = TTy{:,:};                                                             % extract data
@@ -24,14 +23,13 @@ nsteps = 10;                                                                % Bo
 window = 150;                                                               % Bostanci & Yilmaz (2020)
 
 %% Static analysis
-
-% Estimate VAR model
+    % Estimate VAR model
 dts    = dts((end-nobs+1):end);
 dy_sub = dy((end-nobs+1):end,:);
 Mdl    = varm(nvars,nlags);
 dyMdl  = estimate(Mdl,dy_sub);
 
-% Connectedness table
+    % Connectedness table
 [DYtable,~,~,~,Net] = computeDYtable(dyMdl,nsteps,1);                       % useGIRF
 DYtable  = array2table([DYtable;[Net;NaN]']);
 varnames = [hdr repmat('        ',size(hdr,1),1);'FROM_OTHERS'];

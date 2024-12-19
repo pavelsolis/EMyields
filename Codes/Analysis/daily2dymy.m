@@ -12,7 +12,7 @@ function [S,data_frq,hdr_frq] = daily2dymy(S,dataset_daily,header_daily,to_my)
 % double: data_frq - obs as rows (top-down is old-new), col1 has dates
 % cell:   hdr_frq  - names for the columns of the new dataset
 
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 VarType = {'RHO','CIPDEV','LCNOM','LCSYNT'};
 fields  = {'dated','data','dateb','blncd'};

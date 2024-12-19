@@ -34,7 +34,7 @@ function [llk,xp,Pp,xf,Pf,xs,Ps,x0n,P0n,S11,S10,S00,Syx,llks] = Kfs(y,mu_x,mu_y,
 % Syx  : q*(p+1)     smoother using y and current xs (accounts for intercept)
 % llks : n*1   log-likelihoods
 
-% Pavel Solís (pavel.solis@gmail.com), May 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Determine dimensions
 p     = size(Phi,1);

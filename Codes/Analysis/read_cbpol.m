@@ -4,7 +4,7 @@ function [data_cbpol,hdr_cbpol] = read_cbpol(S)
 %   hdr_cbpol: headaer (no title in first entry, ready to be appended)
 
 % m-files called: construct_hdr
-% Pavel Solís (pavel.solis@gmail.com), May 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw');                  	% platform-specific file separators

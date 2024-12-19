@@ -2,7 +2,7 @@ function rollcor = rollingcorrs(S,cntrs,fname,tnr)
 % ROLLINGCORRS Returns the average rolling correlations of changes in fname
 
 % m-files called: syncdatasets
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 if ismember(S(1).iso,cntrs)
     ctr1 = 1;                               ctrn = length(cntrs);           % emerging markets

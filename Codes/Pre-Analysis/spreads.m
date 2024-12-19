@@ -1,12 +1,12 @@
 function [data_sprd,hdr_sprd,tnrsSprd] = spreads(dataset_daily,header_daily)
-% SPREADS Calculate deviations from covered interest parity (CIP)
+% SPREADS Calculate deviations from covered interest rate parity (CIP)
 % Use yield curves and forward premiums (FPs)
 %   data_sprd: stores historical data
 %   hdr_sprd: stores headers (note: row 1 has no titles, i.e. ready to be appended)
 %   tnrsSprd: reports CIP tenors per currency
 
 % m-files called: compute_spreads, remove_NaNcols
-% Pavel Solís (pavel.solis@gmail.com), April 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %% Identify Countries with LC and FC
 fltrRHO = ismember(header_daily(:,2),'RHO');        % 1 for countries with FP data
 fltrFC  = ismember(header_daily(:,2),'USD');        % 1 for countries with FC data

@@ -1,9 +1,9 @@
-function mtxmse = se_state(S,currEM)
+function se_state(S,currEM)
 % SE_STATE Report standard errors due to uncertainty in the state. The
 % parameters are assumed to be known with certainty
 
 % m-files called: splityldssvys, loadings, vars2parest, atsm_params, Kfs
-% Pavel Solís (pavel.solis@gmail.com), September 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 dt      = 1/12; 
 ncntrs  = length(S);

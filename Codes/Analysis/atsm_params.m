@@ -5,7 +5,7 @@ function [mu_x,mu_y,Phi,A,Q,R] = atsm_params(parest,matsY,matsS,dt)
 % matsS  - maturities of surveys in years
 
 % m-files called: parest2vars, loadings
-% Pavel Solís (pavel.solis@gmail.com), August 2020
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 % Identify number of yields and surveys
 q1 = length(matsY);                                             % q = q1 + q2
@@ -19,15 +19,15 @@ mu_xQ = mu_xP - chol(Hcov,'lower')*lmbd0;
 PhiQ  = PhiP  - chol(Hcov,'lower')*lmbd1;
 [AnQ,BnQ] = loadings(matsY,mu_xQ,PhiQ,Hcov,rho0,rho1,dt);      	% AnQ: 1*q1, BnQ: p*q1
 
-if ~isempty(matsS)                                              % applies forward rate to last tenor
-    % Define start and ending dates of forward rate
+if ~isempty(matsS)                                              % apply forward rate to last tenor
+    % Define start and end dates of forward rate
     nmatsS = length(matsS);
-    matM   = max(matsS);                                        % ending date of forward rate
-    if nmatsS == 1                                              % starting date of forward rate
+    matM   = max(matsS);                                        % end date of forward rate
+    if nmatsS == 1                                              % start date of forward rate
         matN  = 5;                                              % assumes max(matsS) = 10
         matsS = [matN matM];                                    % ensure matsS has at least 5Y and 10Y
     else
-        matN  = matsS(end-1);                                 	% starting date of forward rate
+        matN  = matsS(end-1);                                 	% start date of forward rate
     end
     
     % Loadings for survey yields and forward rate for last tenor

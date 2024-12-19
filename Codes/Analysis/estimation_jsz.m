@@ -1,12 +1,12 @@
 function [ylds_Q,ylds_P,termprm,params] = estimation_jsz(ylds,matsin,matsout,dt,p)
 % ESTIMATION_JSZ Estimate affine term structure model using JSZ normalization
-% See Joslin, Singleton & Zhu (2011) 
+% See Joslin, Singleton & Zhu (2011) and codes in jsz_code folder
 % 
 %	INPUTS
 % ylds    - bond yields (rows: obs, cols: maturities)
 % matsin  - bond maturities (in years) in the data
 % matsout - bond maturities (in years) to be reported
-% dt      - length of period in years (eg. 1/12 for monthly data)
+% dt      - length of period in years (e.g., 1/12 for monthly data)
 % p       - number of pricing factors
 %
 %	OUTPUT
@@ -14,9 +14,9 @@ function [ylds_Q,ylds_P,termprm,params] = estimation_jsz(ylds,matsin,matsout,dt,
 % ylds_P  - estimated yields under P measure
 % termprm - estimated term premia
 % params  - estimated parameters
-%
-% m-files called: sample_estimation_fun, jszLLK_KF, loadings
-% Pavel Solís (pavel.solis@gmail.com), June 2020
+
+% m-files called: loadings; sample_estimation_fun, jszLLK_KF (from jsz_code folder)
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 nobs = size(ylds,1);                                                        % number of observations
 Ip   = eye(p);                                                              % identity matrix

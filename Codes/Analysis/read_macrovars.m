@@ -3,7 +3,8 @@ function [data_macro,hdr_macro] = read_macrovars(S)
 %   data_macro: stores historical data
 %   hdr_macro: stores headers
 
-% Pavel Solís (pavel.solis@gmail.com), September 2021
+% m-files called: read_cbpol
+% Pavel Solís (pavel.solis@gmail.com)
 %%
 pathc  = pwd;
 pathd  = fullfile(pathc,'..','..','Data','Raw');                            % platform-specific file separators
@@ -20,7 +21,7 @@ datesmonth = unique(lbusdate(year(datesmcr),month(datesmcr)));              % la
 data_mcr = data_mcr(ismember(datesmcr,datesmonth),:);                       % extract monthly dataset
 
 % MYR GDP case (correlation between survey and actual series of 0.75)
-data_myr = readmatrix(namefl{2},'Sheet','MYR');                          	% read GDP and Bloomberg survey data
+data_myr = readmatrix(namefl{2},'Sheet','MYR');                          	% read GDP and survey data
 data_myr(isnan(data_myr(:,2)),2) = data_myr(isnan(data_myr(:,2)),3);        % use survey data for missing obs
 fltrMYR  = contains(hdr_mcr(:,3),'MAGDHIY');                            	% identify quarterly GDP for MYR
 datesmyr = x2mdate(data_myr(:,1),0);                                        % dates from Excel to Matlab format
