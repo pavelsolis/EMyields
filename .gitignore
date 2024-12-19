@@ -1,7 +1,7 @@
 ## Project-specific (e.g. large files)
 
 ## Excel files (data files can be large)
-*.xls*
+# *.xls*
 
 ## Word default autosave extension
 ~$*.docx
@@ -18,6 +18,7 @@
 *.smcl
 *.stpr
 *.stsem
+*.stswp
 
 ## R
 .RData
