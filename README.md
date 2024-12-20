@@ -24,15 +24,15 @@ The results in the paper were generated using the following:
 	- Raw. Original data files.
 	- Analytic. Analysis data files.
 - Docs folder with the following subfolders: 
-	- Paper. Source files for the manuscript and the online appendix.
-	- Figures. Files for the figures used in the paper and the online appendix.
+	- Paper. Source file for the online appendix.
+	- Figures. Files for the figures used in the online appendix.
 
 
 ## Instructions for Replication
-Execute the files Docs/Paper/paper.tex and Docs/Paper/online.tex to generate the PDF version of the manuscript and the online appendix.
-
 The contents of several original data files in the Data/Raw folder cannot be shared due to licensing rights or due to size limits but the file Data/MetadataGuide.docx documents the steps to access the data sources. In that case, simply execute the file Codes/Pre-Analysis/read_data.m to read the original data files.
 
 Execute the files Codes/Analysis/ts_analysis.m and Codes/Analysis/spillovers.do to replicate the figures and tables in the paper and the online appendix; comments in those codes indicate the lines that generate each figure and table.
 - Codes/Analysis/ts_analysis.m loads the data file Data/Analytic/yc_data.mat, computes the decompositions of the yield curves of the countries in the sample at the monthly and daily frequencies, and generates the data files Data/Analytic/yc_decompositions.mat and Data/Analytic/dataspillovers.xlsx.
 - Codes/Analysis/spillovers.do loads the data file Data/Analytic/dataspillovers.xlsx and performs the spillover analysis; beware that it creates dta files that might be too large for version control.
+
+Execute the file Docs/Paper/online.tex to generate the PDF version of the online appendix.
